@@ -16,13 +16,13 @@ public class TacheServiceImpl implements TacheService{
 	TacheRepository tacheRepository;
 
 	@Override
-	public Tache saveTache(Tache p) {
-		return tacheRepository.save(p);
+	public Tache saveTache(Tache t) {
+		return tacheRepository.save(t);
 	}
 
 	@Override
-	public Tache updateTache(Tache p) {
-		return tacheRepository.save(p);
+	public Tache updateTache(Tache t) {
+		return tacheRepository.save(t);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class TacheServiceImpl implements TacheService{
 	}
 
 	@Override
-	public List<Tache> getAllTaches() {
+	public List<Tache> getAllTaches() {	
 		return tacheRepository.findAll();
 	}
 
