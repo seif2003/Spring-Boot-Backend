@@ -14,7 +14,7 @@ import com.seif.taches.repos.ProjetRepository;
 
 @RestController
 @RequestMapping("/api/proj")
-@CrossOrigin("*")
+@CrossOrigin
 public class ProjetRESTController {
 	
 	@Autowired

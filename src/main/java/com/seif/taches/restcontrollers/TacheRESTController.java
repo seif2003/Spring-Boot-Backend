@@ -54,5 +54,10 @@ public class TacheRESTController {
 		return tacheService.findByProjetIdProjet(idProj);
 	}
 	
+	@GetMapping("/tachesByName/{nom}")
+	public List<Tache> findByNomTacheContains(@PathVariable("nom") String nom){
+		return tacheService.findByNomTacheContains(nom);
+	}
+	
 	
 }
