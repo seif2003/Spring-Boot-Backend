@@ -3,6 +3,8 @@ package com.seif.taches.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.web.session.RequestedUrlRedirectInvalidSessionStrategy;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,27 +26,28 @@ public class TacheRESTController {
 	@Autowired
 	TacheService tacheService;
 	
-	@GetMapping
+	@GetMapping("/all")
 	List<Tache> getAllTaches() {
 		return tacheService.getAllTaches();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/getbyid/{id}")
 	public Tache getTacheById(@PathVariable Long id) {
 		return tacheService.getTache(id);
 	}
 	
-	@PostMapping
+	@PostMapping("/addtache")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Tache createTache(@RequestBody Tache tache) {
 		return tacheService.saveTache(tache);
 	}
 	
-	@PutMapping
+	@PutMapping("/updatetache")
 	public Tache updateTache(@RequestBody Tache tache) {
 		return tacheService.updateTache(tache);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deltache/{id}")
 	public void deleteTache(@PathVariable Long id) {
 		tacheService.deleteTacheById(id);
 	}
