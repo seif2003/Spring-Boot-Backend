@@ -1,12 +1,15 @@
 package com.seif.taches.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Tache {
@@ -27,6 +30,15 @@ public class Tache {
     
     @ManyToOne
     private Projet projet;
+    
+    /*@OneToOne
+    private Image image;*/
+    
+    @OneToMany (mappedBy = "tache")
+    private List<Image> images;
+    
+    private String imagePath;
+
 
 	public Tache() {
 		super();
@@ -102,7 +114,24 @@ public class Tache {
 	public void setProjet(Projet projet) {
 		this.projet = projet;
 	}
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	
-	
+
 	
 }

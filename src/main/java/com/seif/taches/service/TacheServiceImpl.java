@@ -1,5 +1,8 @@
 package com.seif.taches.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.seif.taches.entities.Projet;
 import com.seif.taches.entities.Tache;
+import com.seif.taches.repos.ImageRepository;
 import com.seif.taches.repos.TacheRepository;
 
 @Service
@@ -14,15 +18,29 @@ public class TacheServiceImpl implements TacheService{
 	
 	@Autowired
 	TacheRepository tacheRepository;
+	
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Override
 	public Tache saveTache(Tache t) {
 		return tacheRepository.save(t);
 	}
-
+	/*
 	@Override
 	public Tache updateTache(Tache t) {
 		return tacheRepository.save(t);
+	}*/
+	
+	@Override
+	public Tache updateTache(Tache t) {
+		//Long oldTacheImageId =
+		//		this.getTache(t.getIdTache()).getImage().getIdImage();
+		//Long newTacheImageId = t.getImage().getIdImage();
+		Tache tacheUpdated = tacheRepository.save(t);
+		//if (oldTacheImageId != newTacheImageId) //si l'image a été modifiée
+		//	imageRepository.deleteById(oldTacheImageId);
+		return tacheUpdated;
 	}
 
 	@Override
@@ -32,6 +50,13 @@ public class TacheServiceImpl implements TacheService{
 
 	@Override
 	public void deleteTacheById(Long id) {
+		Tache t = getTache(id);
+		 //suuprimer l'image avant de supprimer le produit
+		try {
+		Files.delete(Paths.get(System.getProperty("user.home")+"/OneDrive/images/"+t.getImagePath()));
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
 		tacheRepository.deleteById(id);
 	}
 
