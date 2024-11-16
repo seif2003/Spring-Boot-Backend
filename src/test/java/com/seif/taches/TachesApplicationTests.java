@@ -98,7 +98,7 @@ class TachesApplicationTests {
 	}
 	
 	@Test
-	public void testfindByOrderByNomProduitAsc()
+	public void testfindByOrderByNomTacheAsc()
 	{
 		List<Tache> taches = tacheRepository.findByOrderByNomTacheAsc();
 		for (Tache t : taches)

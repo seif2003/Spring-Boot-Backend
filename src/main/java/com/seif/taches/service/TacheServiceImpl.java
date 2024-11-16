@@ -51,12 +51,16 @@ public class TacheServiceImpl implements TacheService{
 	@Override
 	public void deleteTacheById(Long id) {
 		Tache t = getTache(id);
-		 //suuprimer l'image avant de supprimer le produit
-		try {
-		Files.delete(Paths.get(System.getProperty("user.home")+"/OneDrive/images/"+t.getImagePath()));
+		//delete all pics in the database for this tache
+		imageRepository.deleteByTache(t);
+
+		
+		 //suuprimer l'image avant de supprimer le tache
+		/*try {
+			Files.delete(Paths.get(System.getProperty("user.home")+"/OneDrive/images/"+t.getImagePath()));
 		} catch (IOException e) {
-		e.printStackTrace();
-		}
+			e.printStackTrace();
+		}*/
 		tacheRepository.deleteById(id);
 	}
 

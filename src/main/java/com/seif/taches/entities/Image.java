@@ -35,7 +35,7 @@ public class Image {
 	private byte[] image;
 	
 	@ManyToOne
-	@JoinColumn (name="PRODUIT_ID")
+	@JoinColumn (name="TACHE_ID")
 	@JsonIgnore
 	private Tache tache;
 }

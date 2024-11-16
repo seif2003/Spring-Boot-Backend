@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.seif</groupId>
-	<artifactId>produits</artifactId>
+	<artifactId>Taches</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>produits</name>
+	<name>Taches</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
